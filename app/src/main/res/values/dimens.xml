@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rightAddress_text_margin">115dp</dimen>
+    <dimen name="smallButtonWidth">130dp</dimen>
+    <dimen name="smallButtonHeight">55dp</dimen>
+    <dimen name="buttonCorners">5dp</dimen>
+    <dimen name="rightAddress_text_margin_small">52dp</dimen>
+    <dimen name="largeButtonWidth">200dp</dimen>
+    <dimen name="editTextHeight">60dp</dimen>
+</resources>

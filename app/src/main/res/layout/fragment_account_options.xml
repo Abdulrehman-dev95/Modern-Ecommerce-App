@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LoginRegisterActivity">
+
+    <ImageView
+        android:id="@+id/blurryBackground_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/blurry_background" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/name_tv"
+            style="@style/h3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:drawablePadding="6dp"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_kleine_shape"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/login_tv"
+            style="@style/h4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/rightAddress_text_margin_small"
+            android:text="@string/the_rightAddress_text"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_tv" />
+
+
+        <TextView
+            android:id="@+id/account_tv"
+            style="@style/h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/quality_text"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@id/login_tv"
+            app:layout_constraintStart_toStartOf="@id/login_tv"
+            app:layout_constraintTop_toBottomOf="@id/login_tv" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register_button"
+            style="@style/blueButtonStyle"
+            android:layout_width="@dimen/largeButtonWidth"
+            android:layout_height="@dimen/smallButtonHeight"
+            android:text="@string/register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/account_tv"
+            app:layout_constraintStart_toStartOf="@+id/account_tv"
+            app:layout_constraintTop_toBottomOf="@+id/account_tv" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_button"
+            style="@style/whiteButtonStyle"
+            android:layout_width="@dimen/largeButtonWidth"
+            android:layout_height="@dimen/smallButtonHeight"
+            android:text="@string/login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/register_button"
+            app:layout_constraintStart_toStartOf="@id/register_button"
+            app:layout_constraintTop_toBottomOf="@id/register_button"
+            app:layout_constraintVertical_bias="0.3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>
