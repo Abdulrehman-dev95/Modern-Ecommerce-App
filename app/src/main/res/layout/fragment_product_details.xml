@@ -69,7 +69,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/productDescription"
+            android:id="@+id/tvProductDescription"
             style="@style/h3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:background="@color/g_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/productDescription" />
+            app:layout_constraintTop_toBottomOf="@id/tvProductDescription" />
 
         <LinearLayout
             android:id="@+id/linearProductPref"
@@ -156,7 +156,7 @@
             android:layout_height="@dimen/smallButtonHeight"
             android:layout_marginTop="46dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/login"
+            android:text="@string/add_to_cart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/linearProductPref"
             app:layout_constraintStart_toStartOf="@+id/linearProductPref"

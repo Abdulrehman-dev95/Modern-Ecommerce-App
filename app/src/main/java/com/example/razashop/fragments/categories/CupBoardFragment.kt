@@ -12,11 +12,11 @@ import com.example.razashop.utils.Resource
 import com.example.razashop.viewmodels.CategoryViewModel
 import com.example.razashop.viewmodels.ViewModelFactory
 import com.google.firebase.firestore.FirebaseFirestore
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.getValue
-
+@AndroidEntryPoint
 class CupBoardFragment: BaseCategoryFragment() {
     @Inject
     lateinit var firebaseFirestore: FirebaseFirestore
@@ -42,7 +42,7 @@ class CupBoardFragment: BaseCategoryFragment() {
                             showBestProductsLoading()
                         }
                         is Resource.Success -> {
-                            bestProductsAdapters.differ.submitList(it.data)
+                            bestProductsAdapter.differ.submitList(it.data)
                             hideBestProductsLoading()
                         }
 
@@ -68,7 +68,7 @@ class CupBoardFragment: BaseCategoryFragment() {
                             showOfferLoading()
                         }
                         is Resource.Success -> {
-                            bestProductsAdapters.differ.submitList(it.data)
+                            bestProductsAdapter.differ.submitList(it.data)
                             showOfferLoading()
                         }
 

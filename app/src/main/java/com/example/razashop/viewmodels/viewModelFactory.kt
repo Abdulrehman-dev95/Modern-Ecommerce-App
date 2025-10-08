@@ -9,7 +9,9 @@ class ViewModelFactory(
     private val firebaseFirestore: FirebaseFirestore,
     private val category: Categories
 ) : ViewModelProvider.Factory {
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        @Suppress("UNCHECKED_CAST")
         return CategoryViewModel(firebaseFirestore, category) as T
     }
 }

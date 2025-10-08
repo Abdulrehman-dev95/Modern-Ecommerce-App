@@ -10,18 +10,19 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.razashop.R
-import com.example.razashop.adapters.BestProductsAdapters
+import com.example.razashop.adapters.BestProductsAdapter
 import com.example.razashop.databinding.FragmentBaseCategoryBinding
+import com.example.razashop.utils.showBottomNavigationView
 import com.example.razashop.viewmodels.CategoryViewModel
 
 open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     private val viewModel: CategoryViewModel by viewModels()
     private lateinit var binding: FragmentBaseCategoryBinding
-    protected val offerAdapter: BestProductsAdapters by lazy {
-        BestProductsAdapters()
+    protected val offerAdapter: BestProductsAdapter by lazy {
+        BestProductsAdapter()
     }
-    protected val bestProductsAdapters: BestProductsAdapters by lazy {
-        BestProductsAdapters()
+    protected val bestProductsAdapter: BestProductsAdapter by lazy {
+        BestProductsAdapter()
     }
 
     override fun onCreateView(
@@ -59,7 +60,7 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
         binding.rvBestProducts.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-            adapter = bestProductsAdapters
+            adapter = bestProductsAdapter
 
             addOnScrollListener(
                 object : RecyclerView.OnScrollListener() {
@@ -87,6 +88,10 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
+    }
 
 }
 

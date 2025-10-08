@@ -3,8 +3,8 @@ package com.example.razashop.fragments.categories
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.razashop.data.Categories
@@ -12,17 +12,18 @@ import com.example.razashop.utils.Resource
 import com.example.razashop.viewmodels.CategoryViewModel
 import com.example.razashop.viewmodels.ViewModelFactory
 import com.google.firebase.firestore.FirebaseFirestore
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+@AndroidEntryPoint
 class ChairFragment : BaseCategoryFragment() {
     @Inject
     lateinit var firebaseFirestore: FirebaseFirestore
 
 
-    val viewModel: CategoryViewModel by viewModels {
-        ViewModelFactory(firebaseFirestore, Categories.Chair)
+    val viewModel: CategoryViewModel by lazy {
+        ViewModelProvider(this, ViewModelFactory(firebaseFirestore, Categories.Chair))[CategoryViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +42,7 @@ class ChairFragment : BaseCategoryFragment() {
                             showBestProductsLoading()
                         }
                         is Resource.Success -> {
-                            bestProductsAdapters.differ.submitList(it.data)
+                            bestProductsAdapter.differ.submitList(it.data)
                             hideBestProductsLoading()
                         }
 
@@ -67,7 +68,7 @@ class ChairFragment : BaseCategoryFragment() {
                             showOfferLoading()
                         }
                         is Resource.Success -> {
-                            bestProductsAdapters.differ.submitList(it.data)
+                            bestProductsAdapter.differ.submitList(it.data)
                             showOfferLoading()
                         }
 

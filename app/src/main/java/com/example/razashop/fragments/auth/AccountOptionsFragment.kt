@@ -1,4 +1,4 @@
-package com.example.razashop.fragments
+package com.example.razashop.fragments.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater

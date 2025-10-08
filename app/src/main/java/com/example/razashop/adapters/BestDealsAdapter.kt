@@ -59,7 +59,7 @@ class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHold
 
         return BestDealsViewHolder(
             BestDealsRvItemBinding.inflate(
-                LayoutInflater.from(parent.context)
+                LayoutInflater.from(parent.context), parent, false
             )
         )
     }
@@ -71,12 +71,17 @@ class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHold
 
         val product = differ.currentList[position]
         holder.bind(product)
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(product)
+        }
 
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
+    var onItemClick: ((Product) -> Unit)? = null
 
 
 }

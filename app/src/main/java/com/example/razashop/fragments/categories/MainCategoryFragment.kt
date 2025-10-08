@@ -11,15 +11,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.razashop.R
 import com.example.razashop.adapters.BestDealsAdapter
-import com.example.razashop.adapters.BestProductsAdapters
+import com.example.razashop.adapters.BestProductsAdapter
 import com.example.razashop.adapters.SpecialProductsAdapter
 import com.example.razashop.databinding.FragmentMainCategoryBinding
 import com.example.razashop.utils.Resource
+import com.example.razashop.utils.showBottomNavigationView
 import com.example.razashop.viewmodels.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -32,7 +34,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
     private lateinit var binding: FragmentMainCategoryBinding
     private lateinit var specialProductsAdapter: SpecialProductsAdapter
     private lateinit var bestDealsAdapter: BestDealsAdapter
-    private lateinit var bestProductsAdapter: BestProductsAdapters
+    private lateinit var bestProductsAdapter: BestProductsAdapter
     private val viewModel: MainCategoryViewModel by viewModels<MainCategoryViewModel>()
 
     override fun onCreateView(
@@ -49,6 +51,25 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         setupSpecialProductsRv()
         setupBestDealsRv()
         setupBestProductsRv()
+
+        specialProductsAdapter.onItemClick = {
+            val b = Bundle().apply {
+                putParcelable("product", it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
+        }
+        bestDealsAdapter.onItemClick = {
+            val b = Bundle().apply {
+                putParcelable("product", it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
+        }
+        bestProductsAdapter.onItemClick = {
+            val b = Bundle().apply {
+                putParcelable("product", it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(state = Lifecycle.State.STARTED) {
@@ -130,12 +151,13 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                         }
 
                         is Resource.Loading -> {
-                            binding.bottomBar.visibility = View.VISIBLE
+                            showLoading()
                         }
 
                         is Resource.Success -> {
+                            hideLoading()
                             bestProductsAdapter.differ.submitList(it.data)
-                            binding.bottomBar.visibility = View.GONE
+
 
                         }
 
@@ -151,7 +173,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
     }
 
     private fun setupBestProductsRv() {
-        bestProductsAdapter = BestProductsAdapters()
+        bestProductsAdapter = BestProductsAdapter()
         binding.rvBestProducts.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
@@ -200,6 +222,11 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
 
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
     }
 
 

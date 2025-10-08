@@ -41,4 +41,5 @@
     <string name="product_description">Product Description</string>
     <string name="colors">Colors</string>
     <string name="sizes">Sizes</string>
+    <string name="s">S</string>
 </resources>

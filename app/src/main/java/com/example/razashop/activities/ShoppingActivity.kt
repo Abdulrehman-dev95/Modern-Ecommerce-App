@@ -5,7 +5,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.razashop.R
 import com.example.razashop.databinding.ActivityShoppingBinding
@@ -27,7 +26,10 @@ class ShoppingActivity : AppCompatActivity() {
             insets
         }
 
-        val navController = findNavController(R.id.shoppingHostFragment)
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.shoppingHostFragment) as androidx.navigation.fragment.NavHostFragment
+        val navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
     }
 }

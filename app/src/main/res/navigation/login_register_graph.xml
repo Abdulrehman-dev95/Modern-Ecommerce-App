@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountOptionsFragment"
-        android:name="com.example.razashop.fragments.AccountOptionsFragment"
+        android:name="com.example.razashop.fragments.auth.AccountOptionsFragment"
         android:label="AccountOptionsFragment"
         tools:layout="@layout/fragment_account_options">
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.razashop.fragments.LoginFragment"
+        android:name="com.example.razashop.fragments.auth.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.razashop.fragments.RegisterFragment"
+        android:name="com.example.razashop.fragments.auth.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action

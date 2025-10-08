@@ -1,10 +1,10 @@
 package com.example.razashop.fragments
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.razashop.R
 import com.example.razashop.adapters.HomeViewPagerAdapter
 import com.example.razashop.databinding.FragmentHomeBinding
@@ -16,7 +16,7 @@ import com.example.razashop.fragments.categories.MainCategoryFragment
 import com.example.razashop.fragments.categories.TableFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
-class HomeFragment : androidx.fragment.app.Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +53,7 @@ class HomeFragment : androidx.fragment.app.Fragment(R.layout.fragment_home) {
                 4 -> tab.text = "Accessory"
                 5 -> tab.text = "Furniture"
             }
-        }
+        }.attach()
     }
 
 

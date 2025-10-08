@@ -11,7 +11,7 @@ import com.example.razashop.data.Product
 import com.example.razashop.databinding.ProductRvItemBinding
 import java.util.Locale
 
-class BestProductsAdapters : RecyclerView.Adapter<BestProductsAdapters.BestProductsViewHolder>() {
+class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProductsViewHolder>() {
 
     inner class BestProductsViewHolder(private val binding: ProductRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -59,7 +59,7 @@ class BestProductsAdapters : RecyclerView.Adapter<BestProductsAdapters.BestProdu
     ): BestProductsViewHolder {
         return BestProductsViewHolder(
             ProductRvItemBinding.inflate(
-                LayoutInflater.from(parent.context)
+                LayoutInflater.from(parent.context), parent, false
             )
         )
     }
@@ -70,11 +70,16 @@ class BestProductsAdapters : RecyclerView.Adapter<BestProductsAdapters.BestProdu
     ) {
         val product = differ.currentList[position]
         holder.bind(product)
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(product)
+        }
+
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
 
+    var onItemClick: ((Product) -> Unit)? = null
 
 }

@@ -1,5 +1,6 @@
 package com.example.razashop.viewmodels
 
+import androidx.lifecycle.ViewModel
 import com.example.razashop.data.Categories
 import com.example.razashop.data.Product
 import com.example.razashop.utils.Resource
@@ -12,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 class CategoryViewModel(
     private val firebaseFirestore: FirebaseFirestore,
     private val category: Categories
-) {
+): ViewModel() {
     private val _offerProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
     val offerProducts = _offerProducts.asStateFlow()
 
