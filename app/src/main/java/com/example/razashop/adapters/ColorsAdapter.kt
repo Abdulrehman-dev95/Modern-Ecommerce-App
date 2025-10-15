@@ -62,12 +62,21 @@ class ColorsAdapter : RecyclerView.Adapter<ColorsAdapter.ColorViewHolder>() {
         val color = differ.currentList[position]
         holder.bind(color, position)
         holder.itemView.setOnClickListener {
-            if (selectedPosition >= 0) {
+
+            if (selectedPosition == holder.adapterPosition) {
+                // If the clicked item is already selected, deselect it
+                selectedPosition = -1
+                notifyItemChanged(holder.adapterPosition)
+
+            } else {
+                // If a different item is selected
+                if (selectedPosition >= 0) {
+                    notifyItemChanged(selectedPosition)
+                }
+                selectedPosition = holder.adapterPosition
                 notifyItemChanged(selectedPosition)
+                onItemClick?.invoke(color)
             }
-            selectedPosition = holder.adapterPosition
-            notifyItemChanged(selectedPosition)
-            onItemClick?.invoke(color)
         }
 
     }

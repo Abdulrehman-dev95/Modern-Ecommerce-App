@@ -69,7 +69,7 @@ class FurnitureFragment : BaseCategoryFragment() {
                         }
                         is Resource.Success -> {
                             bestProductsAdapter.differ.submitList(it.data)
-                            showOfferLoading()
+                            hideOfferLoading()
                         }
 
                         is Resource.Unspecified -> {}

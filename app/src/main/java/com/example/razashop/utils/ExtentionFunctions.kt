@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.razashop.R
 import com.example.razashop.activities.ShoppingActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.Locale
 
 fun Fragment.moveToShoppingActivity() {
     val intent =
@@ -30,3 +31,11 @@ fun Fragment.showBottomNavigationView() {
     bottomNavigationView.visibility = View.VISIBLE
 
 }
+
+fun Float.priceAfterDiscount(price: Float): String {
+    val remainingPricePercentage = 1f - this
+    val priceAfterOffer = remainingPricePercentage * price
+    return String.format(locale = Locale.getDefault(), "%.2f", priceAfterOffer)
+}
+
+

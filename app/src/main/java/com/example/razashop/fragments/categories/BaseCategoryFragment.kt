@@ -41,7 +41,7 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     }
 
      fun hideOfferLoading() {
-        binding.offerProgressBar.visibility = View.GONE
+        binding.offerProgressBar.visibility = View.INVISIBLE
     }
 
      fun showOfferLoading() {
@@ -49,7 +49,7 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     }
 
     fun hideBestProductsLoading() {
-        binding.bestProgressBar.visibility = View.GONE
+        binding.bestProgressBar.visibility = View.INVISIBLE
     }
 
     fun showBestProductsLoading() {

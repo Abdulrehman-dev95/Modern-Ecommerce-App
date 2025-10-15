@@ -1,14 +1,17 @@
 package com.example.razashop.adapters
 
+import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.razashop.R
 import com.example.razashop.data.Product
 import com.example.razashop.databinding.BestDealsRvItemBinding
-import java.util.Locale
+import com.example.razashop.utils.priceAfterDiscount
 
 class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHolder>() {
     inner class BestDealsViewHolder(private val binding: BestDealsRvItemBinding) :
@@ -20,14 +23,11 @@ class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHold
                 Glide.with(itemView).load(product.images[0]).into(binding.imgBestDeal)
                 tvDealProductName.text = product.name
                 product.offerPercentage?.let {
-                    val remainingPricePercentage = 1f - it
-                    val priceAfterOffer = remainingPricePercentage * product.price
-                    tvNewPrice.text =
-                        String.format(locale = Locale.getDefault(), "%.2f", priceAfterOffer)
-
+                    tvNewPrice.text = it.priceAfterDiscount(product.price)
+                    tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }
-                tvOldPrice.text = product.price.toString()
-
+                tvNewPrice.visibility = View.INVISIBLE
+                tvOldPrice.text = itemView.context.getString(R.string.rs, product.price.toString())
 
             }
 

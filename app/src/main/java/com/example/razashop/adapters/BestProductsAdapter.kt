@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.razashop.R
 import com.example.razashop.data.Product
 import com.example.razashop.databinding.ProductRvItemBinding
-import java.util.Locale
+import com.example.razashop.utils.priceAfterDiscount
 
 class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProductsViewHolder>() {
 
@@ -21,14 +22,11 @@ class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProduct
                 Glide.with(itemView).load(product.images[0]).into(binding.imgProduct)
                 tvName.text = product.name
                 product.offerPercentage?.let {
-                    val remainingPricePercentage = 1f - it
-                    val priceAfterOffer = remainingPricePercentage * product.price
-                    tvNewPrice.text =
-                        String.format(locale = Locale.getDefault(), "%.2f", priceAfterOffer)
+                    tvNewPrice.text = it.priceAfterDiscount(product.price)
                     tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-
                 }
-                tvPrice.text = product.price.toString()
+                tvNewPrice.visibility = android.view.View.INVISIBLE
+                tvPrice.text = itemView.context.getString(R.string.rs, product.price.toString())
 
             }
         }
@@ -59,7 +57,7 @@ class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProduct
     ): BestProductsViewHolder {
         return BestProductsViewHolder(
             ProductRvItemBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
+                LayoutInflater.from(parent.context),
             )
         )
     }

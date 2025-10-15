@@ -3,6 +3,7 @@ package com.example.razashop.di
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.example.razashop.firebase.FireBaseCommon
 import com.example.razashop.utils.Constants.INTRODUCTION_SP
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -27,4 +28,10 @@ object AppModule {
     @Provides
     fun provideIntroductionSP(application: Application): SharedPreferences =
         application.getSharedPreferences(INTRODUCTION_SP, MODE_PRIVATE)
+
+    @Provides
+    @Singleton
+    fun getFirebaseCommon(firestore: FirebaseFirestore, auth: FirebaseAuth) =
+        FireBaseCommon(auth, firestore)
+
 }

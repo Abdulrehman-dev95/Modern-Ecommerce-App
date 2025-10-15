@@ -93,7 +93,9 @@
         app:tabRippleColor="@color/white"
         app:tabSelectedTextColor="@color/black"
         app:tabTextAppearance="@style/tabLayout_text"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        app:tabGravity="start"
+        />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

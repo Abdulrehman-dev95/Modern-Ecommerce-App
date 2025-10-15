@@ -42,4 +42,23 @@
     <string name="colors">Colors</string>
     <string name="sizes">Sizes</string>
     <string name="s">S</string>
+    <string name="_1">1</string>
+    <string name="_50">$50</string>
+    <string name="l">L</string>
+    <string name="your_shopping_cart_is_empty">Your shopping cart is empty</string>
+    <string name="check_out">Check out</string>
+    <string name="_150">$150</string>
+    <string name="my_cart">My Cart</string>
+    <string name="total">Total</string>
+    <string name="rs">Rs.%1$s</string>
+    <string name="close_button">Close button</string>
+    <string name="addresses">Addresses</string>
+    <string name="address_location_hint">Address location Ex: Home</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="street_hint">Street</string>
+    <string name="city_hint">City</string>
+    <string name="province_hint">Province</string>
+    <string name="phone_hint">Phone</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
 </resources>

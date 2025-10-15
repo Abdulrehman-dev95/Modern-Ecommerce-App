@@ -60,12 +60,19 @@ class SizesAdapter : RecyclerView.Adapter<SizesAdapter.SizesViewHolder>() {
         val size = differ.currentList[position]
         holder.bind(size, position)
         holder.itemView.setOnClickListener {
-            if (selectedPosition >= 0) {
+            if (selectedPosition == holder.adapterPosition) {
+                // If the clicked item is already selected, deselect it
+                selectedPosition = -1
+                notifyItemChanged(holder.adapterPosition)
+            } else {
+                // If a different item is selected
+                if (selectedPosition >= 0) {
+                    notifyItemChanged(selectedPosition)
+                }
+                selectedPosition = holder.adapterPosition
                 notifyItemChanged(selectedPosition)
+                onItemClick?.invoke(size)
             }
-            selectedPosition = holder.adapterPosition
-            notifyItemChanged(selectedPosition)
-            onItemClick?.invoke(size)
         }
 
     }

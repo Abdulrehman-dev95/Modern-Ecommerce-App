@@ -36,14 +36,24 @@
         android:id="@+id/profileFragment"
         android:name="com.example.razashop.fragments.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.razashop.fragments.ProductDetailsFragment"
         android:label="ProductDetailsFragment"
-        tools:layout="@layout/fragment_product_details" >
+        tools:layout="@layout/fragment_product_details">
         <argument
             android:name="product"
             app:argType="com.example.razashop.data.Product" />
     </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.razashop.fragments.AddressFragment"
+        android:label="AddressFragment"
+        tools:layout="@layout/fargment_address"
+        />
 </navigation>
