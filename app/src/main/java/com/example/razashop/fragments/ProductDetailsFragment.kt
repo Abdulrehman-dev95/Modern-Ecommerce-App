@@ -32,9 +32,9 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
     private val viewPagerAdapter by lazy { ViewPagerImagesAdapter() }
     private val sizesAdapter by lazy { SizesAdapter() }
     private val colorsAdapter by lazy { ColorsAdapter() }
+    private val viewModel: ProductDetailsViewModel by viewModels<ProductDetailsViewModel>()
     private var selectedColor: Int? = null
     private var selectedSize: String? = null
-    private val viewModel: ProductDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

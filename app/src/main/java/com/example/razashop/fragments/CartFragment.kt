@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -19,10 +18,13 @@ import com.example.razashop.databinding.FragmentCartBinding
 import com.example.razashop.firebase.FireBaseCommon
 import com.example.razashop.utils.Resource
 import com.example.razashop.utils.VerticalItemDecoration
+import com.example.razashop.utils.showAlertDialog
 import com.example.razashop.viewmodels.CartViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CartFragment : Fragment(R.layout.fragment_cart) {
     private lateinit var binding: FragmentCartBinding
     private lateinit var cartAdapter: CartProductsAdapter
@@ -40,14 +42,16 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        var totalPrice = 0F
         binding.apply {
             cartAdapter = CartProductsAdapter()
+            rvCart.adapter = cartAdapter
             rvCart.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            rvCart.adapter = cartAdapter
             rvCart.addItemDecoration(VerticalItemDecoration())
+
         }
+
 
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -94,6 +98,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.productsPrice.collectLatest { price ->
                     price?.let {
+                        totalPrice = it
                         binding.tvTotalPrice.text = context?.getString(R.string.rs, it.toString())
 
                     }
@@ -105,20 +110,12 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.deleteDialog.collectLatest {
-                    val alertDialog = AlertDialog.Builder(requireContext()).apply {
-                        setTitle("Delete item from cart")
-                        setMessage("Do you want to delete this item from your cart?")
-                        setNegativeButton("Cancel") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                        setPositiveButton("Yes") { dialog, _ ->
-                            viewModel.deleteCartProduct(it)
-                            dialog.dismiss()
-                        }
-
+                    showAlertDialog(
+                        title = "Delete item from cart",
+                        message = "Do you want to delete this item from your cart?"
+                    ) {
+                        viewModel.deleteCartProduct(it)
                     }
-                    alertDialog.create()
-                    alertDialog.show()
                 }
             }
         }
@@ -137,6 +134,15 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             findNavController().navigate(R.id.action_cartFragment_to_productDetailsFragment, b)
         }
 
+        binding.buttonCheckout.setOnClickListener {
+            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(
+                totalPrice = totalPrice,
+                cartAdapter.differ.currentList.toTypedArray(),
+                true
+            )
+            findNavController().navigate(action)
+
+        }
 
     }
 

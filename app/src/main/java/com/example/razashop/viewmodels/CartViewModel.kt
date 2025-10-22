@@ -70,12 +70,15 @@ class CartViewModel @Inject constructor(
 
         if (index != null && index != -1) {
             val id = documents[index].id
-            _cartProducts.value = Resource.Loading()
+
             when (qualityChanging) {
                 FireBaseCommon.QualityChanging.INCREASE -> {
                     fireBaseCommon.increaseQuantity(id) { _, exception ->
-                        if (exception != null)
+                        if (exception != null) {
+
                             _cartProducts.value = Resource.Error(exception.toString())
+                        }
+
                     }
                 }
 
@@ -87,21 +90,25 @@ class CartViewModel @Inject constructor(
                         return
                     }
                     fireBaseCommon.decreaseQuantity(id) { _, exception ->
-                        if (exception != null)
+                        if (exception != null) {
                             _cartProducts.value = Resource.Error(exception.toString())
+                        }
 
                     }
                 }
             }
         }
     }
-
     fun deleteCartProduct(cartProduct: CartProduct) {
         val index = cartProducts.value.data?.indexOf(cartProduct)
         if (index != null && index != -1) {
             val documentId = documents[index].id
             firebaseFirestore.collection("user").document(auth.uid!!).collection("cart")
-                .document(documentId).delete()
+                .document(documentId).delete().addOnSuccessListener {
+
+                }.addOnFailureListener {
+                    _cartProducts.value = Resource.Error(it.toString())
+                }
         }
     }
 

@@ -31,12 +31,8 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        jvmToolchain(21)
     }
     buildFeatures {
         viewBinding = true
@@ -76,6 +72,9 @@ dependencies {
     kapt(libs.hilt.compiler)
     // Loading Button
     implementation(libs.loading.button.android)
+
+    implementation(libs.ktor.client.android)
+    implementation(libs.storage.kt.android)
 
     // ViewPager Indicator
     implementation(libs.viewpagerindicator)

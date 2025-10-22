@@ -33,7 +33,6 @@
     <string name="chair">Chair</string>
     <string name="best_deals">Best Deals</string>
     <string name="best_products">Best Products</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="close_icon">closeIcon</string>
     <string name="product_name">Product Name</string>
@@ -61,4 +60,24 @@
     <string name="phone_hint">Phone</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
+    <string name="raza_shop_dose_not_support_virtual_payments_you_can_pay_when_you_receive_your_order">Raza Shop dose not support virtual payments. You can pay when you receive your order.</string>
+    <string name="billing">Billing</string>
+    <string name="payment_methods">Payment Methods</string>
+    <string name="shipping_address">Shipping Address</string>
+    <string name="place_order">Place Order</string>
+    <string name="full_address">Full Address</string>
+    <string name="my_account">My account</string>
+    <string name="forgot_change_password">Forgot/Change password</string>
+    <string name="close">close</string>
+    <string name="edit_profile">edit\n</string>
+    <string name="all_orders">All orders</string>
+    <string name="no_orders_to_show">No orders to show</string>
+    <string name="order">Order #%1$d</string>
+    <string name="order_address">%1$s %2$s</string>
+    <string name="g_search_now">Search Now</string>
+    <string name="g_cancel">Cancel</string>
+    <string name="g_categories">Categories</string>
+    <string name="scan_icon">Scan icon</string>
+    <string name="microphone_icon">Microphone icon</string>
+    <string name="new_price">Rs.%1$s</string>
 </resources>

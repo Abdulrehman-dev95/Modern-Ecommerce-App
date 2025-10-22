@@ -1,9 +1,9 @@
 buildscript {
-    val navVersion = "2.9.3" // Define navVersion at the top level for better visibility
+    val navVersion = "2.9.5" // Define navVersion at the top level for better visibility
     dependencies {
-        classpath ("com.google.dagger:hilt-android-gradle-plugin:2.57")
+        classpath (libs.hilt.android.gradle.plugin)
 
-        classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:${navVersion}") // Use string template
+        classpath (libs.androidx.navigation.safe.args.gradle.plugin) // Use string template
     }
 }
 

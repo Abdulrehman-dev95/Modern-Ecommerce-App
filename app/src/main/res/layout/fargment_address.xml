@@ -103,7 +103,7 @@
         android:background="@drawable/white_background"
         android:fontFamily="@font/poppins_light"
         android:gravity="start|center_vertical"
-        android:hint="@string/street_hint"
+        android:hint="@string/full_address"
         android:inputType="textPostalAddress"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"

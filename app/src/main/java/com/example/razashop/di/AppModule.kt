@@ -3,6 +3,7 @@ package com.example.razashop.di
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.example.razashop.data.SupaBaseStorageClient
 import com.example.razashop.firebase.FireBaseCommon
 import com.example.razashop.utils.Constants.INTRODUCTION_SP
 import com.google.firebase.auth.FirebaseAuth
@@ -10,12 +11,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
 
     @Provides
     @Singleton
@@ -26,6 +29,13 @@ object AppModule {
     fun provideFirestoreAuth() = FirebaseFirestore.getInstance()
 
     @Provides
+    @Singleton
+    fun provideSupaBaseClient(@ApplicationContext context: android.content.Context) =
+        SupaBaseStorageClient(
+            context = context
+        )
+
+    @Provides
     fun provideIntroductionSP(application: Application): SharedPreferences =
         application.getSharedPreferences(INTRODUCTION_SP, MODE_PRIVATE)
 
@@ -33,5 +43,7 @@ object AppModule {
     @Singleton
     fun getFirebaseCommon(firestore: FirebaseFirestore, auth: FirebaseAuth) =
         FireBaseCommon(auth, firestore)
+
+
 
 }

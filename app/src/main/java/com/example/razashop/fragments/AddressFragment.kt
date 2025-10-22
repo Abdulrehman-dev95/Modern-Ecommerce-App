@@ -38,19 +38,19 @@ class AddressFragment : Fragment(R.layout.fargment_address) {
 
         binding.apply {
             buttonSave.setOnClickListener {
-                val address = edAddressTitle.text.toString()
+                val addressTitle = edAddressTitle.text.toString()
                 val name = edFullName.text.toString()
                 val phone = edPhone.text.toString()
                 val city = edCity.text.toString()
-                val street = edStreet.text.toString()
+                val address = edStreet.text.toString()
                 val province = edProvince.text.toString()
 
                 val addressObj = Address(
-                    address = address,
+                    addressTitle = addressTitle,
                     fullName = name,
                     phone = phone,
                     city = city,
-                    street = street,
+                    address = address,
                     province = province
                 )
                 viewModel.addAddress(addressObj)

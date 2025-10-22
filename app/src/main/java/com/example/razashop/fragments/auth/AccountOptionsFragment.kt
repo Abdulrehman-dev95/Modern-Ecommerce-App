@@ -11,6 +11,7 @@ import com.example.razashop.databinding.FragmentAccountOptionsBinding
 
 class AccountOptionsFragment : Fragment(R.layout.fragment_account_options) {
 
+
     private lateinit var binding: FragmentAccountOptionsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +32,8 @@ class AccountOptionsFragment : Fragment(R.layout.fragment_account_options) {
         binding.loginButton.setOnClickListener {
             findNavController().navigate(R.id.action_accountOptionsFragment_to_loginFragment)
         }
+
     }
+
 
 }
