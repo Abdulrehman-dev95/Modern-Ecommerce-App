@@ -62,7 +62,7 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBillingBinding.inflate(inflater)
+        binding = FragmentBillingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -88,6 +88,12 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
             imageAddAddress.setOnClickListener {
                 findNavController().navigate(R.id.action_billingFragment_to_addressFragment)
             }
+            tvTotalPrice.text = getString(R.string.new_price, totalPrice.toString())
+
+        }
+
+        addressAdapter.onclick = {
+            selectedAddress = it
         }
 
 
@@ -110,6 +116,7 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
                             binding.progressbarAddress.visibility = View.GONE
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         }
+
 
                         else -> Unit
                     }
@@ -138,6 +145,8 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
                             ).show()
 
                         }
+
+
 
                         is Resource.Error -> {
                             binding.buttonPlaceOrder.revertAnimation()

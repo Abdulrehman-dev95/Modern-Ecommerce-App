@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.razashop.R
 import com.example.razashop.activities.LoginRegisterActivity
 import com.example.razashop.databinding.FragmentProfileBinding
@@ -86,6 +87,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
                         is Resource.Success<*> -> {
                             binding.progressbarSettings.visibility = View.GONE
+                            binding.tvUserName.text = it.data?.firstName + " " + it.data?.lastName
+                            Glide.with(this@ProfileFragment).load(it.data?.imagePath)
+                                .into(binding.imageUser)
+
                         }
 
                         is Resource.Unspecified<*> -> {}

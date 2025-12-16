@@ -82,5 +82,7 @@ class ChairFragment : BaseCategoryFragment() {
         }
 
 
+
+
     }
 }

@@ -23,7 +23,7 @@ class UserAccountViewModel @Inject constructor(
     private val auth: FirebaseAuth,
     private val firebaseFirestore: FirebaseFirestore,
     private val supaBaseStorageClient: SupaBaseStorageClient,
-    @ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     private val _getUser = MutableStateFlow<Resource<User>>(
         Resource.Unspecified()
@@ -60,7 +60,7 @@ class UserAccountViewModel @Inject constructor(
             validateEmail(user.email) is RegisterValidation.Success && user.firstName.trim()
                 .isNotEmpty() && user.lastName.trim().isNotEmpty()
 
-        if (areInputsValid) {
+        if (!areInputsValid) {
             _editInfo.value = Resource.Error("Check your inputs")
             return
 

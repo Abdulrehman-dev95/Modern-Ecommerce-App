@@ -14,7 +14,7 @@ import com.example.razashop.utils.priceAfterDiscount
 
 class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProductsViewHolder>() {
 
-    inner class BestProductsViewHolder(private val binding: ProductRvItemBinding) :
+    class BestProductsViewHolder(private val binding: ProductRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: Product) {
@@ -22,8 +22,8 @@ class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProduct
                 Glide.with(itemView).load(product.images[0]).into(binding.imgProduct)
                 tvName.text = product.name
                 if (product.offerPercentage != null) {
-                    tvNewPrice.visibility = android.view.View.VISIBLE
                     val newPrice = product.offerPercentage.priceAfterDiscount(product.price)
+                    tvNewPrice.visibility = android.view.View.VISIBLE
                     tvNewPrice.text = itemView.context.getString(R.string.new_price, newPrice)
                     tvPrice.text = itemView.context.getString(R.string.rs, product.price.toString())
                     tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG

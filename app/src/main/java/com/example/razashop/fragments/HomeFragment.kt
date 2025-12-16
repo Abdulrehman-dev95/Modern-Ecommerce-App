@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.razashop.R
 import com.example.razashop.adapters.HomeViewPagerAdapter
 import com.example.razashop.databinding.FragmentHomeBinding
@@ -54,7 +55,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 5 -> tab.text = "Furniture"
             }
         }.attach()
+        binding.search.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+            findNavController().navigate(action)
+
+        }
     }
-
-
 }

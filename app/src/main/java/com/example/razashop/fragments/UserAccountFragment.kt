@@ -3,11 +3,11 @@ package com.example.razashop.fragments
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
@@ -34,7 +34,12 @@ class UserAccountFragment : Fragment(R.layout.fragment_user_account) {
     private val viewModel: UserAccountViewModel by viewModels()
     private val loginViewModel: LoginViewModel by viewModels()
     private var imageUri: Uri? = null
-    private lateinit var galleryLauncher: ActivityResultLauncher<String>
+    private var galleryLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) {
+        imageUri = it
+        Glide.with(this@UserAccountFragment).load(it).into(binding.imageUser)
+    }
 
 
     override fun onCreateView(
@@ -89,25 +94,25 @@ class UserAccountFragment : Fragment(R.layout.fragment_user_account) {
                             binding.tvUpdatePassword.visibility = View.VISIBLE
                             binding.imageEdit.visibility = View.VISIBLE
 
-                            Glide.with(this@UserAccountFragment).load(it.data?.imagePath).error(
-                                Color.BLACK.toDrawable()
-                            )
-                                .into(binding.imageUser)
-                            binding.edEmail.setText(it.data?.email)
-                            binding.edFirstName.setText(it.data?.firstName)
-                            binding.edLastName.setText(it.data?.lastName)
-
+                            it.data?.let { data ->
+                                if (data.imagePath.isNotEmpty()){
+                                    Glide.with(this@UserAccountFragment).load(data.imagePath).error(
+                                        Color.BLACK.toDrawable()
+                                    )
+                                        .into(binding.imageUser)
+                                }else{
+                                    Log.e("UserAccountFragment","image path is empty")
+                                }
+                                binding.edEmail.setText(data.email)
+                                binding.edFirstName.setText(data.firstName)
+                                binding.edLastName.setText(data.lastName)
+                            }
                         }
 
                         is Resource.Unspecified<*> -> {}
                     }
-
-
                 }
-
-
             }
-
         }
 
 
@@ -123,11 +128,17 @@ class UserAccountFragment : Fragment(R.layout.fragment_user_account) {
 
                         is Resource.Loading<*> -> {
                             binding.buttonSave.startAnimation()
-                            findNavController().navigateUp()
+
                         }
 
                         is Resource.Success<*> -> {
                             binding.buttonSave.revertAnimation()
+                            Toast.makeText(
+                                requireContext(),
+                                "Profile Saved Successfully",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
                             findNavController().navigateUp()
                         }
 
@@ -152,12 +163,7 @@ class UserAccountFragment : Fragment(R.layout.fragment_user_account) {
         }
 
         binding.imageEdit.setOnClickListener {
-            galleryLauncher = registerForActivityResult(
-                ActivityResultContracts.GetContent()
-            ) {
-                imageUri = it
-                Glide.with(this@UserAccountFragment).load(it).into(binding.imageUser)
-            }
+
             galleryLauncher.launch("image/*")
 
         }

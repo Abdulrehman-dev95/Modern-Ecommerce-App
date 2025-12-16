@@ -11,15 +11,13 @@ import com.example.razashop.databinding.SpecialRvItemBinding
 
 class SpecialProductsAdapter :
     RecyclerView.Adapter<SpecialProductsAdapter.SpecialProductsViewHolder>() {
-    inner class SpecialProductsViewHolder(private val binding: SpecialRvItemBinding) :
+    class SpecialProductsViewHolder(private val binding: SpecialRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
             binding.apply {
 
                 if (product.images.isNotEmpty()) {
                     Glide.with(itemView).load(product.images[0]).into(binding.imgSpecialRvItem)
-                } else {
-//                    binding.imgSpecialRvItem
                 }
                 tvSpecialRvItemProductName.text = product.name
                 tvSpecialRvItemProductPrice.text = product.price.toString()
