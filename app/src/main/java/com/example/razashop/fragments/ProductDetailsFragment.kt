@@ -20,6 +20,7 @@ import com.example.razashop.adapters.ViewPagerImagesAdapter
 import com.example.razashop.data.CartProduct
 import com.example.razashop.databinding.FragmentProductDetailsBinding
 import com.example.razashop.utils.Resource
+import com.example.razashop.utils.afterDiscount
 import com.example.razashop.utils.hideBottomNavigationView
 import com.example.razashop.viewmodels.ProductDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,7 +52,11 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
         val product = args.product
         binding.apply {
             tvProductName.text = product.name
-            tvProductPrice.text = context?.getString(R.string.rs, product.price.toString())
+            val discountedPrice = product.offerPercentage?.let { product.price.afterDiscount(it) }
+            tvProductPrice.text = context?.getString(
+                R.string.rs,
+                discountedPrice?.toString() ?: product.price.toString()
+            )
             tvProductDescription.text = product.description
             if (product.colors.isNullOrEmpty())
                 tvProductColor.visibility = View.INVISIBLE

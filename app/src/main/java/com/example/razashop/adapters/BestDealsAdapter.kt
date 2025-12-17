@@ -11,10 +11,10 @@ import com.bumptech.glide.Glide
 import com.example.razashop.R
 import com.example.razashop.data.Product
 import com.example.razashop.databinding.BestDealsRvItemBinding
-import com.example.razashop.utils.priceAfterDiscount
+import com.example.razashop.utils.afterDiscount
 
 class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHolder>() {
-    inner class BestDealsViewHolder(private val binding: BestDealsRvItemBinding) :
+    class BestDealsViewHolder(private val binding: BestDealsRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
 
@@ -22,12 +22,19 @@ class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHold
 
                 Glide.with(itemView).load(product.images[0]).into(binding.imgBestDeal)
                 tvDealProductName.text = product.name
-                product.offerPercentage?.let {
-                    tvNewPrice.text = it.priceAfterDiscount(product.price)
-                    tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                }
-                tvNewPrice.visibility = View.INVISIBLE
                 tvOldPrice.text = itemView.context.getString(R.string.rs, product.price.toString())
+
+                if (product.offerPercentage != null) {
+                    val discountedPrice = product.price.afterDiscount(product.offerPercentage)
+                    tvNewPrice.text = itemView.context.getString(
+                        R.string.new_price, discountedPrice.toString()
+                    )
+                    tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                    tvNewPrice.visibility = View.VISIBLE
+                } else {
+                    tvOldPrice.paintFlags = 0
+                    tvNewPrice.visibility = View.GONE
+                }
 
             }
 

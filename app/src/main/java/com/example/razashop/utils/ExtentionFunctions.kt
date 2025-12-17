@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import com.example.razashop.R
 import com.example.razashop.activities.ShoppingActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.util.Locale
 
 fun Fragment.moveToShoppingActivity() {
     val intent =
@@ -33,12 +32,12 @@ fun Fragment.showBottomNavigationView() {
 
 }
 
-fun Float.priceAfterDiscount(price: Float): String {
-    val decimalDiscountRate = this / 100F
-    val remainingPricePercentage = 1f - decimalDiscountRate
-    val priceAfterOffer = remainingPricePercentage * price
-    return String.format(locale = Locale.getDefault(), "%.2f", priceAfterOffer)
+fun Float.afterDiscount(discountPercent: Float): Int {
+    val discount = (discountPercent / 100f) * this
+    val finalPrice = this - discount
+    return finalPrice.toInt()
 }
+
 
 fun Fragment.showAlertDialog(title: String, message: String, onYesClick: () -> Unit) {
     val alertDialog = AlertDialog.Builder(requireContext()).apply {
@@ -57,5 +56,3 @@ fun Fragment.showAlertDialog(title: String, message: String, onYesClick: () -> U
     alertDialog.show()
 
 }
-
-

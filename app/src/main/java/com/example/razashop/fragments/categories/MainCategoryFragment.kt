@@ -1,7 +1,6 @@
 package com.example.razashop.fragments.categories
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +26,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-const val Tag = "Error"
 
 @AndroidEntryPoint
 class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
@@ -77,7 +75,6 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     when (it) {
                         is Resource.Error -> {
                             hideLoading()
-                            Log.d(Tag, it.message.toString())
                             Toast.makeText(
                                 requireContext(),
                                 " Sorry! Special products not available Please try again later ",
@@ -110,7 +107,6 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     when (it) {
                         is Resource.Error -> {
                             hideLoading()
-                            Log.d(Tag, it.message.toString())
                             Toast.makeText(
                                 requireContext(),
                                 " Sorry! Best Deals products not available Please try again later ",
@@ -142,7 +138,6 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     when (it) {
                         is Resource.Error -> {
                             hideLoading()
-                            Log.d(Tag, it.message.toString())
                             Toast.makeText(
                                 requireContext(),
                                 " Sorry! Best Products not available Please try again later ",

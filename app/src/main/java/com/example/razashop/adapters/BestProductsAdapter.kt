@@ -2,6 +2,7 @@ package com.example.razashop.adapters
 
 import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.razashop.R
 import com.example.razashop.data.Product
 import com.example.razashop.databinding.ProductRvItemBinding
-import com.example.razashop.utils.priceAfterDiscount
+import com.example.razashop.utils.afterDiscount
 
 class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProductsViewHolder>() {
 
@@ -21,16 +22,18 @@ class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProduct
             binding.apply {
                 Glide.with(itemView).load(product.images[0]).into(binding.imgProduct)
                 tvName.text = product.name
+
                 if (product.offerPercentage != null) {
-                    val newPrice = product.offerPercentage.priceAfterDiscount(product.price)
-                    tvNewPrice.visibility = android.view.View.VISIBLE
-                    tvNewPrice.text = itemView.context.getString(R.string.new_price, newPrice)
-                    tvPrice.text = itemView.context.getString(R.string.rs, product.price.toString())
+                    val newPrice = product.price.afterDiscount(product.offerPercentage)
+                    tvNewPrice.visibility = View.VISIBLE
+                    tvNewPrice.text = itemView.context.getString(R.string.new_price, newPrice.toString())
                     tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 } else {
-                    tvNewPrice.visibility = android.view.View.INVISIBLE
-                    tvPrice.text = itemView.context.getString(R.string.rs, product.price.toString())
+                    tvNewPrice.visibility = View.GONE
+                    tvPrice.paintFlags = 0
                 }
+                tvPrice.text = itemView.context.getString(R.string.rs, product.price.toString())
+
             }
         }
 

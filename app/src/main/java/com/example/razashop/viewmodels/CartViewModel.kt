@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.razashop.data.CartProduct
 import com.example.razashop.firebase.FireBaseCommon
 import com.example.razashop.utils.Resource
-import com.example.razashop.utils.priceAfterDiscount
+import com.example.razashop.utils.afterDiscount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -118,7 +118,7 @@ class CartViewModel @Inject constructor(
 private fun calculatePrice(data: List<CartProduct>): Float {
     return data.sumOf {
         if (it.product.offerPercentage != null) {
-            (it.product.offerPercentage.priceAfterDiscount(it.product.price)
+            (it.product.price.afterDiscount(it.product.offerPercentage)
                 .toFloat() * it.quantity).toDouble()
         } else {
             (it.product.price * it.quantity).toDouble()

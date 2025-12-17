@@ -21,6 +21,7 @@ import com.example.razashop.data.CartProduct
 import com.example.razashop.data.Order
 import com.example.razashop.data.OrderStatus
 import com.example.razashop.databinding.FragmentBillingBinding
+import com.example.razashop.utils.HorizontalItemDecoration
 import com.example.razashop.utils.Resource
 import com.example.razashop.utils.showAlertDialog
 import com.example.razashop.viewmodels.BillingViewModel
@@ -85,6 +86,7 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
             rvProducts.adapter = billingProductsAdapter
             rvProducts.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            rvProducts.addItemDecoration(HorizontalItemDecoration())
             imageAddAddress.setOnClickListener {
                 findNavController().navigate(R.id.action_billingFragment_to_addressFragment)
             }
@@ -145,7 +147,6 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
                             ).show()
 
                         }
-
 
 
                         is Resource.Error -> {

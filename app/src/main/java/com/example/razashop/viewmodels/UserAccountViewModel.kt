@@ -1,6 +1,5 @@
 package com.example.razashop.viewmodels
 
-import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +11,6 @@ import com.example.razashop.utils.validateEmail
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -22,8 +20,7 @@ import javax.inject.Inject
 class UserAccountViewModel @Inject constructor(
     private val auth: FirebaseAuth,
     private val firebaseFirestore: FirebaseFirestore,
-    private val supaBaseStorageClient: SupaBaseStorageClient,
-    @param:ApplicationContext private val context: Context
+    private val supaBaseStorageClient: SupaBaseStorageClient
 ) : ViewModel() {
     private val _getUser = MutableStateFlow<Resource<User>>(
         Resource.Unspecified()
