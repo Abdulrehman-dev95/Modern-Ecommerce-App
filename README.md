@@ -11,9 +11,9 @@
 ## 📱 App Screenshots
 | Welcome & Auth | Product Discovery | Shopping Cart |
 | :---: | :---: | :---: |
-| <img src="screenshots/1.png" width="250" /> | <img src="screenshots/2.png" width="250" /> | <img src="screenshots/3.png" width="250" /> |
-| **Product Details** | **Order Tracking** | **User Profile** |
-| <img src="screenshots/4.png" width="250" /> | <img src="screenshots/5.png" width="250" /> | <img src="screenshots/6.png" width="250" /> |
+| <img src="app/screenshots/RazaShop_LoginScreen.jpg" width="250" /> | <img src="app/screenshots/RazaShop_HomeScreen.jpg" width="250" /> | <img src="app/screenshots/RazaShop_CartScreen.jpg" width="250" /> |
+| **Order Details** | **Order Tracking** | **User Profile** |
+| <img src="app/screenshots/RazaShop_OrdersScreen.jpg" width="250" /> | <img src="app/screenshots/RazaShop_TrackOrderScreen.jpg" width="250" /> | <img src="app/screenshots/RazaShop_UserProfileScreen.jpg" width="250" /> |
 
 ---
 
