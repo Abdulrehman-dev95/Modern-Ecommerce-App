@@ -33,7 +33,6 @@ class SupaBaseStorageClient(@param:ApplicationContext private val context: Conte
             supabase.storage.from("chatter_images").upload(fileName, imageByteArray)
             return supabase.storage.from("chatter_images").publicUrl(fileName)
         } catch (e: Exception) {
-            e.printStackTrace()
             return null
         }
 
