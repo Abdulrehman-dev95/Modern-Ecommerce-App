@@ -58,10 +58,8 @@ This project follows a simplified MVVM pattern:
 * Basic knowledge of Kotlin and Android Development
 
 ### Steps to Run
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/Abdulrehman-dev95/Modern-Ecommerce-App.git](https://github.com/Abdulrehman-dev95/Modern-Ecommerce-App.git)
-
+1. **Clone the repository**
+  
 2. **Connect the app to Firebase:**
    
    Create new project in **Firebase Console** and connect to this app by adding a google.json.services file.
