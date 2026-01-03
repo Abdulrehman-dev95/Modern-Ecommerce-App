@@ -82,6 +82,7 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
             rvAddress.adapter = addressAdapter
             rvAddress.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            rvAddress.addItemDecoration(HorizontalItemDecoration())
             billingProductsAdapter.differ.submitList(billingProducts)
             rvProducts.adapter = billingProductsAdapter
             rvProducts.layoutManager =
