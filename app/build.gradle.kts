@@ -1,5 +1,5 @@
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -13,12 +13,12 @@ plugins {
 
 android {
     namespace = "com.example.razashop"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.razashop"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -86,8 +86,6 @@ dependencies {
     implementation(libs.ktor.client.android)
     implementation(libs.storage.kt.android)
 
-    // ViewPager Indicator
-    implementation(libs.viewpagerindicator)
     implementation(libs.stepview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

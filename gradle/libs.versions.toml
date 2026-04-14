@@ -22,7 +22,6 @@ googleid = "1.1.1"
 navigationFragmentKtx = "2.9.5"
 stepview = "1.5.1"
 storageKtAndroid = "3.2.5"
-viewpagerindicator = "1.0.0-alpha.1"
 fragment = "1.8.9"
 firebaseFirestore = "26.0.2"
 
@@ -51,7 +50,6 @@ androidx-credentials-play-services-auth = { group = "androidx.credentials", name
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 stepview = { module = "com.github.shuhart:stepview", version.ref = "stepview" }
 storage-kt-android = { module = "io.github.jan-tennert.supabase:storage-kt-android", version.ref = "storageKtAndroid" }
-viewpagerindicator = { module = "io.github.vejei:viewpagerindicator", version.ref = "viewpagerindicator" }
 androidx-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
