@@ -4,9 +4,9 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
-    kotlin("kapt")
     id("dagger.hilt.android.plugin")
     alias(libs.plugins.google.gms.google.services)
 }
@@ -62,9 +62,6 @@ dependencies {
     implementation(libs.googleid)
     implementation(libs.androidx.fragment)
     implementation(libs.firebase.firestore)
-    apply(
-        plugin = "kotlin-kapt"
-    )
 
 
     //Glide
@@ -79,7 +76,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     //Dagger hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     // Loading Button
     implementation(libs.loading.button.android)
 
